@@ -1,0 +1,11 @@
+import socket
+
+def get_quote():
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client_socket.connect(("192.168.159.128", 8888))
+    quote = client_socket.recv(1024).decode()
+    print("Quote of the Day: %s" % quote)
+    client_socket.close()
+
+if __name__ == "__main__":
+    get_quote()
