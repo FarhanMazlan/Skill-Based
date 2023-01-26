@@ -1,0 +1,22 @@
+import socket
+
+# create a socket object
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# get local machine name
+host = socket.gethostname()
+
+port = 12345
+
+# connection to hostname on the port.
+s.connect(('192.168.159.128', 12345))
+
+fahrenheit = input("Enter temperature in Fahrenheit: ")
+s.send(fahrenheit.encode())
+
+# receive data from the server
+received_celsius = s.recv(1024).decode()
+print("Temperature in Celsius: %s" % received_celsius)
+
+# close the client socket
+s.close()
